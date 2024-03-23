@@ -1,3 +1,4 @@
+/* Explicación de clases y metodos en javascript */
 class Persona {
     constructor(nombre, apellido, edad, fechaNacimiento, asisitio) {
         this.nombre = nombre;
@@ -39,3 +40,36 @@ juan.micurso();
 let maria = new Profesor("Maria", "Perez", 33, "1988-09-10", false, "Matemáticas");
 maria.salude();
 maria.yodicto();
+
+
+/*
+Introduccion al uso de librerías
+*/
+
+// Datos de ejemplo
+const data = [4, 8, 15, 16, 5, 18];
+
+// Crea un SVG para el gráfico dentro del div#chart
+const width = 420,
+      barHeight = 30;
+
+const chart = d3.select("#lacaja")
+  .append("svg")
+    .attr("width", width)
+    .attr("height", barHeight * data.length);
+
+// Crea barras de gráfico
+const bar = chart.selectAll("g")
+  .data(data)
+  .enter().append("g")
+    .attr("transform", (d, i) => `translate(0,${i * barHeight})`);
+
+    bar.append("rect")
+    .attr("width", d => d * 10)
+    .attr("height", barHeight - 1);
+  
+  bar.append("text")
+    .attr("x", d => d * 10 - 3)
+    .attr("y", barHeight / 2)
+    .attr("dy", ".35em")
+    .text(d => d);
