@@ -84,9 +84,9 @@ d3.dsv(";", "data.csv").then(function(data) {
   
     const sampleData = data.slice(100, 200); // Tomar solo las primeras 10 filas para el ejemplo
   
-    // Mostrar los títulos en la consola
+    // Mostrar los datos en la consola
     sampleData.forEach(function(row) {
-      console.log(row.Genres); // Asegurándote de que 'Title' coincida con el nombre de tu columna
+      console.log(row.Genres); 
     });
   }).catch(function(error) {
     // Manejo de errores
