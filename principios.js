@@ -1,4 +1,4 @@
-/* Explicación de clases y metodos en javascript */
+/* Explicación de clases y metodos en javascript 
 class Persona {
     constructor(nombre, apellido, edad, fechaNacimiento, asisitio) {
         this.nombre = nombre;
@@ -40,10 +40,10 @@ juan.micurso();
 let maria = new Profesor("Maria", "Perez", 33, "1988-09-10", false, "Matemáticas");
 maria.salude();
 maria.yodicto();
-
+*/
 
 /*
-Introduccion al uso de librerías
+Introduccion al uso de librería D3.js
 */
 
 // Datos de ejemplo
@@ -73,3 +73,23 @@ const bar = chart.selectAll("g")
     .attr("y", barHeight / 2)
     .attr("dy", ".35em")
     .text(d => d);
+
+/* lectura de csv con D3.js */
+
+// Cargar el archivo CSV
+d3.csv("data.csv", {
+    delimiter: ";" // Especifica el delimitador, ya que tus datos están separados por ';'
+  }).then(function(data) {
+    console.log(Object.keys(data[0])); // Imprimir los nombres de las columnas
+    data.slice(0, 10).forEach(function(row) {
+        // Acceder directamente para depurar
+        for (let key in row) {
+          if (key.trim().startsWith("Genres")) { // Esto ayudará a identificar si hay un problema con el nombre de la columna
+            console.log(row[key]);
+          }
+        }
+    }); // Cierre de forEach
+}).catch(function(error) { // Cierre de then
+  // Manejar errores, si los hay
+  console.error('Error al cargar el archivo CSV:', error);
+});
