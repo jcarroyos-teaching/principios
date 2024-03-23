@@ -44,7 +44,7 @@ maria.yodicto();
 
 /*
 Introduccion al uso de librería D3.js
-*/
+
 
 // Datos de ejemplo
 const data = [4, 8, 15, 16, 5, 18];
@@ -73,23 +73,22 @@ const bar = chart.selectAll("g")
     .attr("y", barHeight / 2)
     .attr("dy", ".35em")
     .text(d => d);
+*/
+
 
 /* lectura de csv con D3.js */
 
 // Cargar el archivo CSV
-d3.csv("data.csv", {
-    delimiter: ";" // Especifica el delimitador, ya que tus datos están separados por ';'
-  }).then(function(data) {
-    console.log(Object.keys(data[0])); // Imprimir los nombres de las columnas
-    data.slice(0, 10).forEach(function(row) {
-        // Acceder directamente para depurar
-        for (let key in row) {
-          if (key.trim().startsWith("Genres")) { // Esto ayudará a identificar si hay un problema con el nombre de la columna
-            console.log(row[key]);
-          }
-        }
-    }); // Cierre de forEach
-}).catch(function(error) { // Cierre de then
-  // Manejar errores, si los hay
-  console.error('Error al cargar el archivo CSV:', error);
-});
+d3.dsv(";", "data.csv").then(function(data) {
+    // Ahora `data` debe ser un arreglo de objetos, cada uno representando una fila del archivo CSV
+  
+    const sampleData = data.slice(100, 200); // Tomar solo las primeras 10 filas para el ejemplo
+  
+    // Mostrar los títulos en la consola
+    sampleData.forEach(function(row) {
+      console.log(row.Genres); // Asegurándote de que 'Title' coincida con el nombre de tu columna
+    });
+  }).catch(function(error) {
+    // Manejo de errores
+    console.error('Error al cargar el archivo CSV:', error);
+  });
